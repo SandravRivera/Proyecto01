@@ -1,8 +1,6 @@
 import numpy
 import re
 import unidecode
-from app.CityDictionaryCreator import create_cities_file
-from app.IataListCreator import create_iata_file
 
 def levenshtein_distance(token1, token2):
     """
@@ -93,7 +91,7 @@ def calculate_distance(my_location, max_dist_iata, max_dist_city, cities_weather
 def closest_word(level, max_distance, dict_distance):
     if(level <= max_distance):
         if level in dict_distance:
-                return level[0]
+                return dict_distance[level][0]
         return closest_word(level+1, max_distance, dict_distance)
     return None
 
@@ -102,4 +100,7 @@ def city_search(my_location, cities_weather, iatas_weather):
     max_dist_city = 2
     max_distance = max(max_dist_city, max_dist_iata)
     dict_distance = calculate_distance(my_location, max_dist_iata, max_dist_city, cities_weather, iatas_weather)
+#    print("dict_distance ", dict_distance)
+#    print()
     return closest_word(0, max_distance, dict_distance)
+
