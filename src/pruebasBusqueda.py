@@ -1,5 +1,12 @@
 from levenshtein import city_search
+from iataCities import iata_cities
 
+####### VER SI IMPORTA LAS CIUDADES Y SU IATA #######
+print()
+print('IATA CITIES ##########')
+print(iata_cities)
+
+####### VER SI FUNCIONA LA BUSQUEDA POR LEVENSHTEIN #######
 print()
 print('IATA DICT ##########')
 iata_dict = {
@@ -7,7 +14,9 @@ iata_dict = {
     "AGU":"clima_Aguascalientes",
     "AMS":"clima_Ámsterdam",
     "GDL":"clima_Guadalajara",
-    "PHX":"clima_Phoenix"
+    "PHX":"clima_Phoenix",
+    'TLC':'clima_Toluca',
+    'TRC':'clima_Coahuila'
     }
 print(iata_dict)
 
@@ -19,7 +28,9 @@ city_dict = {
     "Aguascalientes":"clima_Aguascalientes",
     "Ámsterdam":"clima_Ámsterdam",
     "Guadalajara":"clima_Guadalajara",
-    "Phoenix":"clima_Phoenix"
+    "Phoenix":"clima_Phoenix",
+    'Toluca':'clima_Toluca',
+    'Coahuila':'clima_Coahuila'
     }
 print(city_dict)
 
@@ -34,4 +45,6 @@ location3 = "xalapa"
 print(location3, " search: ", city_search(location3, city_dict, iata_dict))
 location4 = "MTZ"
 print(location4, " search: ", city_search(location4, city_dict, iata_dict))
+location5 = "TMC"  ##### Da preferencia TLC sobre TRC por orden en el diccionario
+print(location5, " search: ", city_search(location5, city_dict, iata_dict))
 print()
