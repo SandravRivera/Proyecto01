@@ -1,13 +1,15 @@
 import sys
 import time
 import requests
+from iataCities import iata_cities
+from levenshtein import city_search
 
 key = "&appid=155505a47faf9082a7ee3d45f7b1ea0b&units=metric" #key of the API
 url = "https://api.openweathermap.org/data/2.5/weather?"
 coordinates = {} #Dictionary "lat, lon": weather
 cache = {} #Dictionary "IATA" : weather
 tickets = {} #Dictionary "ticket": [IATA1, IATA2]
-cities = {} #Dictionary "country,city" : weather
+cities = {} #Dictionary "name_of_the_city" : weather
 
 def validLine(raw_line):
     """Method to check if a line in the dataset is valid. 
@@ -51,6 +53,7 @@ def readData(data_list):
                 weather = get_weather(url1)
                 cache[line[1]] = weather
                 coordinates[f"{line[3]}, {line[4]}"] = weather 
+                cities[iata_cities[line[1]]] = weather
                 time.sleep(1.3)
             except:
                 print(f"\nCould't request the weather information. The input {line} is probably incorrect.")
@@ -62,6 +65,7 @@ def readData(data_list):
                 weather = get_weather(url2)
                 cache[line[2]] = weather
                 coordinates[f"{line[5]}, {line[6]}"] = weather
+                cities[iata_cities[line[2]]] = weather
                 time.sleep(1.3)
             except:
                 print(f"\nCould't request the weather information. The input {line} is probably incorrect.")
@@ -87,20 +91,6 @@ def searchWeatherWith_ticket(ticket):
         return (f"{IATA1}:\n{weather1}\n\n{IATA2}:\n{weather2}")
     else:
         return ("Ticket not found.\nPlease check again the information.")
-
-def searchWeatherWith_IATA(IATA):
-    """method to search the weather of a city from a IATA code
-
-    Args:
-        IATA (string): IATA code.
-
-    Returns:
-        string: The weather
-    """
-    if(IATA in cache):
-        return cache[IATA]
-    else:
-        return "There are no results"
         
 def searchWeatherWith_Coordinates(lat, lon):
     """method to search the weather of a city with its coordinates
@@ -120,25 +110,21 @@ def searchWeatherWith_Coordinates(lat, lon):
         coordinates[f"{lat}, {lon}"] = weather
         return weather
     
-def searchWeatherWith_NameOfCity(country, city):
+def searchWeatherWith_NameOfCity(city):
     """method to search the weather of a city with the name of the city and country
 
     Args:
-        country (string): name of the city's country
         city (string): name of the city
 
     Returns:
         string: the weather
     """
-    location = f"{country.lower()},{city.lower()}"
-    if(location in cities):
-        return cities[location]
-    else:
-        url1 = (f"{url}q={location}{key}")
-        weather = get_weather(url1)
-        cities[location] = weather
-        return weather
-
+    
+    city_name = city_search(city, cities, iata_cities)
+    if(city_name==None):
+        return "Input not found"
+    return city_name
+    
 def get_weather(url1):
     res1 = requests.get(url1) 
     data1 = res1.json()
