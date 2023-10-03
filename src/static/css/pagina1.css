@@ -25,7 +25,7 @@ html, body {
 .content {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center; /* Centrar horizontalmente las tarjetas */
   margin: 20px;
 }
 
@@ -73,8 +73,15 @@ html, body {
 }
 
 /* Estilos para las tarjetas (cards) */
+.card-container {
+  display: flex;
+  justify-content: space-between; /* Espacio entre las tarjetas */
+  margin-top: 20px; /* Agrega un margen superior */
+  margin-bottom: 20px; /* Agrega un margen inferior */
+}
+
 .card {
-  flex-basis: calc(33.33% - 20px);
+  flex-basis: calc(50% - 20px); /* 50% de ancho y margen entre las tarjetas */
   margin-bottom: 20px;
   height: 350px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
@@ -82,6 +89,7 @@ html, body {
   color: white;
   position: relative;
   border-radius: 5px;
+  margin: 0 10px;
 }
 
 .card-category {
