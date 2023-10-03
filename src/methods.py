@@ -20,7 +20,7 @@ def validLine(raw_line):
     Returns:
         list[string]: a list of the elements of the line
     """
-    line = raw_line.rsplit(",")
+    line = raw_line.split(",")
     if len(line[0])!=16:
         print(f"\nTicket {line[0]} is not valid, must have exactly 16 characters.")
     try:
@@ -120,7 +120,7 @@ def searchWeatherWith_NameOfCity(city):
         string: the weather
     """
     
-    city_name = city_search(city, cities, iata_cities)
+    city_name = city_search(city, cities, cache)
     if(city_name==None):
         return "Input not found"
     return city_name
