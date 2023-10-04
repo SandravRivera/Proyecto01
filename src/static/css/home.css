@@ -14,7 +14,7 @@ html, body {
   }
 
   #welcome {
-    background: #999 url("https://www.dropbox.com/s/dgaa4s9ws6iqvab/table_office_1920x1080.jpg?dl=1") no-repeat center center fixed;
+    background: #999 url("https://images.unsplash.com/photo-1529528744093-6f8abeee511d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80") no-repeat center center fixed;
     background-size: cover; 
   }
 
