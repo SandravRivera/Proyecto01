@@ -133,4 +133,4 @@ def start():
     data_list = data_csv.readlines()
     data_list.pop(0)
     readData(data_list)
-
+    
