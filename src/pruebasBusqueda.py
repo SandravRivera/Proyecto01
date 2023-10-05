@@ -47,4 +47,7 @@ location4 = "MTZ"
 print(location4, " search: ", city_search(location4, city_dict, iata_dict))
 location5 = "TMC"  ##### Da preferencia TLC sobre TRC por orden en el diccionario
 print(location5, " search: ", city_search(location5, city_dict, iata_dict))
-print()
+location6 = "1#@%#^$"
+print(location6, " search: ", city_search(location6, city_dict, iata_dict))
+location7 = "A,g,u,a,sc@a.l#i^e&n*tes"
+print(location7, " search: ", city_search(location7, city_dict, iata_dict))

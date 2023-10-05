@@ -3,8 +3,8 @@ import re
 import unidecode
 
 def levenshtein_distance(word1: str, word2: str):
-    """Returns the Levenshtein distance between two words. 
-    The difference is case insensitive and just works in letters.
+    """Returns the Levenshtein distance between two words. The 
+    difference is case insensitive and is between alphabethical characters.
     
     Code obtained from:
     Gad, A. F. (2021). Implementing The Levenshtein Distance 
@@ -50,8 +50,8 @@ def levenshtein_distance(word1: str, word2: str):
     return distances[len(word1)][len(word2)]
 
 def normalize_word(original_word: str):
-    """Converts to uppercase and deletes characters that are 
-    not alphabetical in a string.
+    """Converts the string to uppercase and deletes 
+    the characters that are not alphabetical.
 
     Args:
         original_word (str): the word before normalize it.
@@ -63,17 +63,13 @@ def normalize_word(original_word: str):
     normalized_word = unidecode.unidecode(original_word)
     normalized_word = re.sub("[^A-Z]", "", original_word, 0,re.IGNORECASE)
     normalized_word = normalized_word.upper()
-    if (len(normalized_word) > 0):
-        return normalized_word
-    else:
-        return original_word
+    return normalized_word
 
 def calculate_distance(my_location: str, max_dist_iata: int, max_dist_city: int, cities_weather: dict, iatas_weather: dict):
-    """Calculates the Levenshtein distances between the word
-    chosen and each element from the group of words to compare.
-    Returns a dictionary with subdictionaries, where each
-    subdictionary has the words with the same distance.
-    It has words with the same distances from the request.
+    """Calculates the Levenshtein distances between the given
+    string and each element from the group of names to compare.
+    Returns a dictionary with subdictionaries, where each one
+    has the names with the same distance.
 
     Code based on:
     Gad, A. F. (2021). Implementing The Levenshtein Distance 
@@ -84,7 +80,7 @@ def calculate_distance(my_location: str, max_dist_iata: int, max_dist_city: int,
         my_location (str): the word chosen to compare.
         max_dist_iata (int): the maximum distance permited with IATA codes.
         max_dist_city (int): the maximum distance permited with cities names.
-        cities_weather (dict): Cities and their weathers.
+        cities_weather (dict): cities and their weathers.
         iatas_weather (dict): IATA codes and their weathers.
 
     Returns:
@@ -127,16 +123,18 @@ def closest_word(level: int, max_distance: int, dict_distance: dict):
 
 def city_search(my_location: str, cities_weather: dict, iatas_weather: dict):
     """Returns the weather of the required place (IATA code or city).
-    If it is not found, uses the place with similar writing.
+    If it is not found, uses a place with similar writing.
 
     Args:
         my_location (str): the given location.
-        cities_weather (dict): Cities and their weathers.
+        cities_weather (dict): cities and their weathers.
         iatas_weather (dict): IATA codes and their weathers.
 
     Returns:
         str: the weather of the indicated place.
     """
+    if(len(normalize_word(my_location)) == 0):
+        return None
     max_dist_iata = 1
     max_dist_city = 2
     max_distance = max(max_dist_city, max_dist_iata)
