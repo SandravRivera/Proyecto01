@@ -32,6 +32,7 @@ def validLine(raw_line):
         print(f"\nFormat of latitude or longitude is not valid on line {line}, must have exactly 16 characters.")
     return line
 
+
 def readData(data_list):
     """Method to read the data from the data_list and to create the cache
 
@@ -69,7 +70,7 @@ def readData(data_list):
                 print(f"\nCould't request the weather information. The input {line} is probably incorrect.")
                 sys.exit()
 
-    
+
 def searchWeatherWith_ticket(ticket):
     """method to search the weather of the cities included in an airplane ticket
 
@@ -88,45 +89,40 @@ def searchWeatherWith_ticket(ticket):
         return (f"{IATA1}:\n{weather1}\n\n{IATA2}:\n{weather2}")
     else:
         return ("Ticket not found.\nPlease check again the information.")
-        
-def searchWeatherWith_Coordinates(lat, lon):
-    """method to search the weather of a city with its coordinates
-
-    Args:
-        lat (string): latitude of the city
-        lon (string): longitude of the city
-
-    Returns:
-        string: the weather
-    """
-    if((f"{lat}, {lon}") in coordinates):
-        return coordinates[f"{lat}, {lon}"]
-    else:
-        url1 = (f"{url}lat={lat}&lon={lon}{key}")
-        weather = get_weather(url1)
-        coordinates[f"{lat}, {lon}"] = weather
-        return weather
-    
+       
+            
 def searchWeatherWith_NameOfCity(city):
-    """method to search the weather of a city with the name of the city and country
+    """method to search the weather of a city with the name of the city
 
     Args:
         city (string): name of the city
 
     Returns:
-        string: the weather
+        Dictionary: the weather
     """
-    
-    city_name = city_search(city, cities, cache)
-    if(city_name==None):
-        return "Input not found"
-    return city_name
+        
+    return city_search(city, cities, cache)
     
 def get_weather(url1):
+    """It makes the API call to get a JSON, extracts and collects the information we want for the weather in 
+    a dictionary named weather and return the dictionary.
+
+    Args:
+        url1 (string): The url to make the API call
+
+    Returns:
+        dict: A dictionary with the data of the weather
+    """
     res1 = requests.get(url1) 
     data1 = res1.json()
-    return (f"\nCountry: {data1['sys']['country']}\nName: {data1['name']}"+
-        f"\nWeather: {data1['weather'][0]['main']}, {data1['weather'][0]['description']}.\nTemperature: {data1['main']['temp']} degrees celcius.\nHumidity: {data1['main']['humidity']}%.")
+    weather = {
+        "country": data1['sys']['country'],
+        "name": data1['name'],
+        "weather": data1['weather'][0]['main'],
+        "temp": data1['main']['temp'],
+        "humidity": data1['main']['humidity']
+    }
+    return weather
 
 def start():
     data_csv = open('dataset2.csv')
