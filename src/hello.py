@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import requests
+
 app = Flask(__name__)
 
 @app.route('/index/')
@@ -20,8 +21,8 @@ def ticket():
 
 @app.route('/buscar_ciudad')
 def searchWeatherWith_NameOfCity():
-    city_name = request.args.get('city') 
-    weather_data = get_weather_by_city_name(city_name)  
+    city_name = request.args.get('city')
+    weather_data = get_weather_by_city_name(city_name)
     return jsonify(weather_data)
 
 # Función para obtener datos climáticos de OpenWeather API
@@ -31,7 +32,7 @@ def get_weather_by_city_name(city_name):
     params = {
         "q": city_name,
         "appid": api_key,
-        "units": "metric"  
+        "units": "metric"
     }
 
     try:
