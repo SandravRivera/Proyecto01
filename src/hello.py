@@ -18,11 +18,10 @@ def city():
 def ticket():
     return render_template('ticket.html')
 
-# Ruta para buscar datos climáticos por nombre de ciudad
 @app.route('/buscar_ciudad')
 def searchWeatherWith_NameOfCity():
-    city_name = request.args.get('city')  # Obtener el nombre de la ciudad desde la solicitud
-    weather_data = get_weather_by_city_name(city_name)  # Llamar a la función para obtener el clima
+    city_name = request.args.get('city') 
+    weather_data = get_weather_by_city_name(city_name)  
     return jsonify(weather_data)
 
 # Función para obtener datos climáticos de OpenWeather API
