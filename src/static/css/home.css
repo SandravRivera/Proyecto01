@@ -9,7 +9,7 @@ html, body {
 }
 
 .section {
-    min-height: 100%; /* at least full height of window */
+    min-height: 100%; 
     text-align: center;
   }
 
