@@ -1,0 +1,147 @@
+/* Estilos globales */
+html, body {
+    min-width: 400px;
+    min-height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background: url("https://images.unsplash.com/photo-1627719736178-dfadf8f370d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80") no-repeat center center fixed;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  /* NAVBAR */
+  .navbar {
+    background-color: #ebfffc;
+    padding: 10px 0;
+  }
+  
+  .navbar-brand img {
+    margin-right: 10px;
+  }
+  
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    margin: 20px;
+  }
+  
+  /* FORM */
+  .form {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .search input {
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    color: #555;
+    padding: 10px 25px;
+    height: 60px;
+    border-radius: 30px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 18px;
+  }
+  
+  .search button {
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+  }
+  
+  .search button img {
+    width: 30px;
+  }
+  
+  /* CARDS */
+  .card-container {
+    display: flex;
+    justify-content: center; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    flex-basis: calc(70% - 20px); /* Aumentamos el ancho para dejar espacio entre las cards */
+    margin-bottom: 20px;
+    height: 420px; 
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    background-size: cover !important;
+    color: white;
+    position: relative;
+    border-radius: 5px;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Estilos específicos para la tarjeta 2 (CARD 2) */
+  .card-weather {
+    height: 420px; 
+    overflow: hidden;
+  }
+  
+  .card-weather .weather {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    height: 100%; 
+  }
+  
+  /* Estilos para el contenido de la tarjeta 2 (Weather) */
+  .card-weather .weather img.weather-icon {
+    max-width: 120px; 
+    margin-top: 10px;
+  }
+  
+  .card-weather .weather h1.temp {
+    font-size: 60px; 
+    font-weight: 500;
+  }
+  
+  .card-weather .weather h2.card-category {
+    font-size: 40px; 
+    font-weight: 400;
+    margin-top: -5px;
+  }
+  
+  .card-weather .details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 20px;
+  }
+  
+  .card-weather .details .col img {
+    max-width: 40px;
+    margin-right: 10px;
+  }
+  
+  .card-weather .details .humidity .wind {
+    font-size: 22px; 
+    margin-top: -3px;
+  }
+  
