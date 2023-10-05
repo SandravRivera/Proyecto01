@@ -41,8 +41,6 @@ def readData(data_list):
     Returns:
         dict,dict: Cache, with the weather of each IATA code. And tickets, with the IATA code of origin and destination.
     """
-    cache = {}
-    tickets = {}
     for raw_line in data_list:
         line = validLine(raw_line) #check if the line is valid
         tickets[line[0]] = [line[1], line[2]]
@@ -71,7 +69,6 @@ def readData(data_list):
                 print(f"\nCould't request the weather information. The input {line} is probably incorrect.")
                 sys.exit()
 
-    return cache, tickets
     
 def searchWeatherWith_ticket(ticket):
     """method to search the weather of the cities included in an airplane ticket
@@ -131,4 +128,9 @@ def get_weather(url1):
     return (f"\nCountry: {data1['sys']['country']}\nName: {data1['name']}"+
         f"\nWeather: {data1['weather'][0]['main']}, {data1['weather'][0]['description']}.\nTemperature: {data1['main']['temp']} degrees celcius.\nHumidity: {data1['main']['humidity']}%.")
 
-
+def start():
+    data_csv = open('dataset2.csv')
+    data_list = data_csv.readlines()
+    data_list.pop(0)
+    readData(data_list)
+    
