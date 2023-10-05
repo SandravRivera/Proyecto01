@@ -12,7 +12,7 @@ html, body {
   box-sizing: inherit;
 }
 
-/* Estilos para la barra de navegación (navbar) */
+/* NAVBAR */
 .navbar {
   background-color: #ebfffc;
   padding: 10px 0;
@@ -22,11 +22,10 @@ html, body {
   margin-right: 10px;
 }
 
-/* Estilos para la sección de contenido */
 .content {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Centrar horizontalmente las tarjetas */
+  justify-content: center; 
   margin: 20px;
 }
 
@@ -76,16 +75,15 @@ html, body {
 /* CARDS */
 .card-container {
   display: flex;
-  justify-content: center; /* Centrar horizontalmente las tarjetas */
+  justify-content: center; 
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-/* Estilos para las tarjetas (cards) */
 .card {
   flex-basis: calc(70% - 20px); /* Aumentamos el ancho para dejar espacio entre las cards */
   margin-bottom: 20px;
-  height: 420px; /* Mantenemos la altura */
+  height: 420px; 
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
   background-size: cover !important;
   color: white;
@@ -99,33 +97,32 @@ html, body {
 
 /* Estilos específicos para la tarjeta 2 (CARD 2) */
 .card-weather {
-  height: 420px; /* Mantenemos la altura de la card 2 */
+  height: 420px; 
   overflow: hidden;
 }
 
-/* Estilos adicionales para la tarjeta 2 */
 .card-weather .weather {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 20px;
-  height: 100%; /* Ajustamos la altura al contenido */
+  height: 100%; 
 }
 
 /* Estilos para el contenido de la tarjeta 2 (Weather) */
 .card-weather .weather img.weather-icon {
-  max-width: 120px; /* Ajustamos el tamaño máximo de las imágenes */
+  max-width: 120px; 
   margin-top: 10px;
 }
 
 .card-weather .weather h1.temp {
-  font-size: 60px; /* Ajustamos el tamaño del texto de temperatura */
+  font-size: 60px; 
   font-weight: 500;
 }
 
 .card-weather .weather h2.card-category {
-  font-size: 40px; /* Ajustamos el tamaño del texto de categoría */
+  font-size: 40px; 
   font-weight: 400;
   margin-top: -5px;
 }
@@ -139,13 +136,11 @@ html, body {
 }
 
 .card-weather .details .col img {
-  max-width: 40px; /* Ajustamos el tamaño máximo de las imágenes en detalles */
+  max-width: 40px;
   margin-right: 10px;
 }
 
 .card-weather .details .humidity .wind {
-  font-size: 22px; /* Ajustamos el tamaño del texto de humedad y viento */
+  font-size: 22px; 
   margin-top: -3px;
 }
-
-/* ... (otros estilos) ... */
