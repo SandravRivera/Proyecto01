@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     getWeatherButton.addEventListener("click", function (e) {
         e.preventDefault();
-
-        const cityName = cityNameInput.value;
+        const cityName = cityNameInput.value; 
 
         fetch(`/searchWeatherWith_NameOfCity?city=${cityName}`)
             .then((response) => response.json())
