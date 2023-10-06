@@ -124,7 +124,7 @@ def get_weather(url1):
     return weather
 
 def start():
-    data_csv = open('dataset.csv')
+    data_csv = open('src/dataset2.csv')
     data_list = data_csv.readlines()
     data_list.pop(0)
     readData(data_list)

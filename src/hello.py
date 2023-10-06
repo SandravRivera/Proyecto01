@@ -27,4 +27,5 @@ def search_weather_by_city_name():
     return jsonify(weather_data)
 
 if __name__ == '__main__':
+    start()  # Llamamos a la función start para cargar los datos iniciales.
     app.run(debug=True)
