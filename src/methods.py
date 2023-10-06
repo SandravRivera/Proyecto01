@@ -1,6 +1,7 @@
 import sys
 import time
 import requests
+from flask import jsonify
 from iataCities import iata_cities
 from levenshtein import city_search
 
@@ -85,9 +86,9 @@ def searchWeatherWith_ticket(ticket):
         weather2 = cache[IATAS[1]]
         IATA1 = tickets[ticket][0]
         IATA2 = tickets[ticket][1]
-        return (f"{IATA1}:\n{weather1}\n\n{IATA2}:\n{weather2}")
+        return(jsonify(weather1), jsonify(weather2))
     else:
-        return ("Ticket not found.\nPlease check again the information.")
+        return None
        
             
 def searchWeatherWith_NameOfCity(city):
@@ -99,8 +100,10 @@ def searchWeatherWith_NameOfCity(city):
     Returns:
         Dictionary: the weather
     """
-        
-    return city_search(city, cities, cache)
+    weather = city_search(city, cities, cache)
+    if(weather==None):
+        return None
+    return jsonify(weather)
     
 def get_weather(url1):
     """It makes the API call to get a JSON, extracts and collects the information we want for the weather in 
