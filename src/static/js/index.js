@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 } else {
                     // Actualizar la "CARD 2" con los datos obtenidos
                     weatherCard.querySelector(".name").textContent = data.name;
-                    weatherCard.querySelector(".temp").textContent = `${data.temp}°C`;
-                    weatherCard.querySelector(".humidity").textContent = `${data.humidity}%`;
+                    weatherCard.querySelector(".temp").textContent = data.temp+"°C";
+                    weatherCard.querySelector(".humidity").textContent = data.humidity+"%";
                     weatherCard.querySelector(".weather").textContent = data.weather;
                 }
             })
