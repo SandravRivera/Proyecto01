@@ -34,16 +34,16 @@ def search_weather_by_city_name():
 @app.route('/buscar_ciudad', methods=['POST'])
 def buscar_ciudad():
     city_name = request.form['city-name-input']
-#    data = searchWeatherWith_NameOfCity(city_name)
-    data = {
+    data = { #################
         "name": city_name,
         "weather": 'weather["weather"]',
         "temp": 'weather["temp"]',
         "humidity": 'weather["humidity"]'
     }
+    data = searchWeatherWith_NameOfCity(city_name)
     return render_template('prueba1.html', data=data)
 
 
 if __name__ == '__main__':
-#    start()  # Asegúrate de llamar a la función start para cargar los datos
+    start()  # Asegúrate de llamar a la función start para cargar los datos
     app.run(debug=True)
