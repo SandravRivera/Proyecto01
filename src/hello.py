@@ -36,8 +36,10 @@ def buscar_ciudad():
     city_name = request.form['city-name-input']
 #    data = searchWeatherWith_NameOfCity(city_name)
     data = {
-        "ciudad" : city_name,
-        "clima" : "Nublado"
+        "name": city_name,
+        "weather": 'weather["weather"]',
+        "temp": 'weather["temp"]',
+        "humidity": 'weather["humidity"]'
     }
     return render_template('prueba1.html', data=data)
 
