@@ -7,7 +7,6 @@ from levenshtein import city_search
 
 key = "&appid=155505a47faf9082a7ee3d45f7b1ea0b&units=metric" #key of the API
 url = "https://api.openweathermap.org/data/2.5/weather?"
-coordinates = {} #Dictionary "lat, lon": weather
 cache = {} #Dictionary "IATA" : weather
 tickets = {} #Dictionary "ticket": [IATA1, IATA2]
 cities = {} #Dictionary "name_of_the_city" : weather
@@ -40,7 +39,7 @@ def readData(data_list):
         data_list (list): A list with the data of the dataset.
 
     Returns:
-        dict,dict: Cache, with the weather of each IATA code. And tickets, with the IATA code of origin and destination.
+        Nothing
     """
     for raw_line in data_list:
         line = validLine(raw_line) #check if the line is valid
@@ -51,9 +50,8 @@ def readData(data_list):
                 url1 = (f"{url}lat={line[3]}&lon={line[4]}{key}") #create the url
                 weather = get_weather(url1)
                 cache[line[1]] = weather
-                coordinates[f"{line[3]}, {line[4]}"] = weather 
                 cities[iata_cities[line[1]]] = weather
-                time.sleep(1.3)
+                time.sleep(1.05)
             except:
                 print(f"\nCould't request the weather information. The input {line} is probably incorrect.")
                 sys.exit()
@@ -63,9 +61,8 @@ def readData(data_list):
                 url2 = (f"{url}lat={line[5]}&lon={line[6]}{key}")
                 weather = get_weather(url2)
                 cache[line[2]] = weather
-                coordinates[f"{line[5]}, {line[6]}"] = weather
                 cities[iata_cities[line[2]]] = weather
-                time.sleep(1.3)
+                time.sleep(1.05)
             except:
                 print(f"\nCould't request the weather information. The input {line} is probably incorrect.")
                 sys.exit()
