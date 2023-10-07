@@ -101,9 +101,14 @@ def searchWeatherWith_NameOfCity(city):
         Dictionary: the weather
     """
     weather = city_search(city, cities, cache)
-    if(weather==None):
-        return None
-    return jsonify(weather)
+    if weather is None:
+        return {"error": "Los datos climáticos no están disponibles para la ciudad ingresada."}
+    return {
+        "name": weather["name"],
+        "weather": weather["weather"],
+        "temp": weather["temp"],
+        "humidity": weather["humidity"]
+    }
     
 def get_weather(url1):
     """It makes the API call to get a JSON, extracts and collects the information we want for the weather in 
@@ -118,7 +123,6 @@ def get_weather(url1):
     res1 = requests.get(url1) 
     data1 = res1.json()
     weather = {
-        "country": data1['sys']['country'],
         "name": data1['name'],
         "weather": data1['weather'][0]['main'],
         "temp": data1['main']['temp'],
