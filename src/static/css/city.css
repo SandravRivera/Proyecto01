@@ -96,12 +96,12 @@ html, body {
 }
 
 /* Estilos específicos para la tarjeta 2 (CARD 2) */
-.card-weather {
+.weather-card {
   height: 420px;
   overflow: hidden;
 }
 
-.card-weather .weather {
+.weather-card .weather {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,23 +111,23 @@ html, body {
 }
 
 /* Estilos para el contenido de la tarjeta 2 (Weather) */
-.card-weather .weather img.weather-icon {
+.weather-card .weather img.weather-icon {
   max-width: 120px;
   margin-top: 10px;
 }
 
-.card-weather .weather h1.temp {
+.weather-card .weather h1.temp {
   font-size: 60px;
   font-weight: 500;
 }
 
-.card-weather .weather h2.card-category {
+.weather-card .weather h2.name {
   font-size: 40px;
   font-weight: 400;
   margin-top: -5px;
 }
 
-.card-weather .details {
+.weather-card .details {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -135,12 +135,12 @@ html, body {
   margin-top: 20px;
 }
 
-.card-weather .details .col img {
+.weather-card .details .col img {
   max-width: 40px;
   margin-right: 10px;
 }
 
-.card-weather .details .humidity .weather { /* Cambiado de wind a weather */
+.weather-card .details .humidity .weather { /* Cambiado de wind a weather */
   font-size: 22px;
   margin-top: -3px;
 }

@@ -100,16 +100,23 @@ def searchWeatherWith_NameOfCity(city):
     Returns:
         Dictionary: the weather
     """
+    if city in cities:
+        return cities[city]
+    
+
     weather = city_search(city, cities, cache)
     if weather is None:
         return {"error": "Los datos climáticos no están disponibles para la ciudad ingresada."}
-    return {
+        
+    cities[city] = {
         "name": weather["name"],
         "weather": weather["weather"],
         "temp": weather["temp"],
         "humidity": weather["humidity"]
     }
-    
+
+    return cities[city]    
+
 def get_weather(url1):
     """It makes the API call to get a JSON, extracts and collects the information we want for the weather in 
     a dictionary named weather and return the dictionary.
