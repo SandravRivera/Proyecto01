@@ -18,14 +18,27 @@
         </div>
       </nav>
 
+      <h2 class="text-center">Tu ciudad</h2>
 
       <!-- Section para form y cards -->
       <section class="content">
         <!-- FORM -->
-          <form action="{{ url_for('city_weather') }}" method="post">
-            <input name="city-name-input" type="text" placeholder="Ingrese el nombre de la ciudad" spellcheck="false"> 
+          <form action="{{ url_for('ticket_weather') }}" method="post">
+            <input name="ticket-input" type="text" placeholder="Ingrese el ticket" spellcheck="false"> 
             <button id="get-weather-button" type="submit"><img src="../static/assets/search.svg"></button>
           </form>
-          <p> {{data.mensaje}} </p>
+
+        <p>
+          {{data.name1}}, 
+          {{data.temp1}},
+          {{data.humidity1}},
+          {{data.weather1}}
+        </p><p>
+          {{data.name2}}, 
+          {{data.temp2}},
+          {{data.humidity2}},
+          {{data.weather2}}
+        </p>
+      </section>
 </body>
 </html>
