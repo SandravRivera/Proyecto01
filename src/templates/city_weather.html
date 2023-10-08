@@ -23,23 +23,17 @@
       <!-- Section para form y cards -->
       <section class="content">
         <!-- FORM -->
+        <div class="form">
           <form action="{{ url_for('city_weather') }}" method="post">
+            <div class="search">
             <input name="city-name-input" type="text" placeholder="Ingrese el nombre de la ciudad" spellcheck="false"> 
             <button id="get-weather-button" type="submit"><img src="../static/assets/search.svg"></button>
+            </div>          
           </form>
-
+        </div>  
         <!-- CARD CONTAINER -->
         <div class="card-container">
           <!-- CARD 1 -->
-          <div class="card" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://i0.wp.com/handluggageonly.co.uk/wp-content/uploads/2016/03/Positano-Weather.jpg?w=1600&ssl=1')">
-            <div class="card-category">Ciudad</div>
-            <div class="card-description">
-              <h2>Clima</h2>
-              <p>La información sobre tu destino:</p>
-            </div>
-          </div>
-
-          <!-- CARD 2 -->
           <div id="weather-card" class="card weather-card" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://i0.wp.com/handluggageonly.co.uk/wp-content/uploads/2016/04/IMG_5589.jpg?w=1600&ssl=1');">
             <div class="weather">
               <div class="weather-content">
