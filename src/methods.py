@@ -50,6 +50,7 @@ def readData(data_list):
             try:
                 url1 = (f"{url}lat={line[3]}&lon={line[4]}{key}") #create the url
                 weather = get_weather(url1)
+                weather["name"] = iata_cities[line[1]]
                 cache[line[1]] = weather
                 cities[iata_cities[line[1]]] = weather
                 time.sleep(1.05)
@@ -61,6 +62,7 @@ def readData(data_list):
             try:
                 url2 = (f"{url}lat={line[5]}&lon={line[6]}{key}")
                 weather = get_weather(url2)
+                weather["name"] = iata_cities[line[2]]
                 cache[line[2]] = weather
                 cities[iata_cities[line[2]]] = weather
                 time.sleep(1.05)
@@ -112,21 +114,8 @@ def searchWeatherWith_NameOfCity(city):
         return cities[city]
     
     return city_search(city, cities, cache)
+
     
-
-    # weather = city_search(city, cities, cache)
-    # if weather is None:
-    #     return None
-        
-    # cities[city] = {
-    #     "name": weather["name"],
-    #     "weather": weather["weather"],
-    #     "temp": weather["temp"],
-    #     "humidity": weather["humidity"]
-    # }
-
-    # return cities[city]    
-
 def get_weather(url1):
     """It makes the API call to get a JSON, extracts and collects the information we want for the weather in 
     a dictionary named weather and return the dictionary.
@@ -140,12 +129,12 @@ def get_weather(url1):
     res1 = requests.get(url1) 
     data1 = res1.json()
     weather = {
-        "name": data1['name'],
         "weather": data1['weather'][0]['main'],
         "temp": data1['main']['temp'],
         "humidity": data1['main']['humidity']
     }
     return weather
+
 
 def start():
     """Open the dataset, get a list of the lines from the file, and read the data.
