@@ -81,9 +81,9 @@ html, body {
 }
 
 .card {
-  flex-basis: calc(70% - 20px);
+  flex-basis: calc(130% - 30px);
   margin-bottom: 20px;
-  height: 420px;
+  height: 425px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
   background-size: cover !important;
   color: white;
@@ -97,7 +97,7 @@ html, body {
 
 /* Estilos específicos para la tarjeta 2 (CARD 2) */
 .weather-card {
-  height: 420px;
+  height: 425px;
   overflow: hidden;
 }
 
