@@ -1,6 +1,7 @@
 import sys
 import time
 import requests
+from flask import jsonify
 from iataCities import iata_cities
 from levenshtein import city_search
 
@@ -86,9 +87,9 @@ def searchWeatherWith_ticket(ticket):
         weather2 = cache[IATAS[1]]
         IATA1 = tickets[ticket][0]
         IATA2 = tickets[ticket][1]
-        return (f"{IATA1}:\n{weather1}\n\n{IATA2}:\n{weather2}")
+        return(jsonify(weather1), jsonify(weather2))
     else:
-        return ("Ticket not found.\nPlease check again the information.")
+        return None
        
             
 def searchWeatherWith_NameOfCity(city):
@@ -100,9 +101,23 @@ def searchWeatherWith_NameOfCity(city):
     Returns:
         Dictionary: the weather
     """
-        
-    return city_search(city, cities, cache)
+    if city in cities:
+        return cities[city]
     
+
+    weather = city_search(city, cities, cache)
+    if weather is None:
+        return None
+        
+    cities[city] = {
+        "name": weather["name"],
+        "weather": weather["weather"],
+        "temp": weather["temp"],
+        "humidity": weather["humidity"]
+    }
+
+    return cities[city]    
+
 def get_weather(url1):
     """It makes the API call to get a JSON, extracts and collects the information we want for the weather in 
     a dictionary named weather and return the dictionary.
@@ -116,7 +131,6 @@ def get_weather(url1):
     res1 = requests.get(url1) 
     data1 = res1.json()
     weather = {
-        "country": data1['sys']['country'],
         "name": data1['name'],
         "weather": data1['weather'][0]['main'],
         "temp": data1['main']['temp'],
@@ -125,7 +139,7 @@ def get_weather(url1):
     return weather
 
 def start():
-    data_csv = open('dataset2.csv')
+    data_csv = open('src/dataset2.csv')
     data_list = data_csv.readlines()
     data_list.pop(0)
     readData(data_list)
