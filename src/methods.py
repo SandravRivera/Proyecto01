@@ -106,7 +106,7 @@ def searchWeatherWith_NameOfCity(city):
 
     weather = city_search(city, cities, cache)
     if weather is None:
-        return {"error": "Los datos climáticos no están disponibles para la ciudad ingresada."}
+        return None
         
     cities[city] = {
         "name": weather["name"],
