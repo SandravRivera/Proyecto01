@@ -32,6 +32,7 @@ def validLine(raw_line):
         print(f"\nFormat of latitude or longitude is not valid on line {line}, must have exactly 16 characters.")
     return line
 
+
 def readData(data_list):
     """Method to read the data from the data_list and to create the cache
 
@@ -103,7 +104,7 @@ def searchWeatherWith_NameOfCity(city):
 
     weather = city_search(city, cities, cache)
     if weather is None:
-        return {"error": "Los datos climáticos no están disponibles para la ciudad ingresada."}
+        return None
         
     cities[city] = {
         "name": weather["name"],

@@ -9,25 +9,28 @@ def index():
 
 @app.route('/')
 def home():
+    start()  # Asegúrate de llamar a la función start para cargar los datos
     return render_template('home.html')
 
 @app.route('/city.html/')
 def city():
-    return render_template('city.html')
+    data = {"mensaje" : ""}
+    return render_template('city_search.html', data=data)
 
 @app.route('/ticket.html/')
 def ticket():
     return render_template('ticket.html')
 
-@app.route('/buscar_ciudad')
-def search_weather_by_city_name():
-    city_name = request.args.get('city')
-    weather_data = searchWeatherWith_NameOfCity(city_name)
-    if weather_data is not None:
-        return jsonify(weather_data)
+@app.route('/buscar_ciudad', methods=['POST'])
+def buscar_ciudad():
+    city_name = request.form['city-name-input']
+    data = searchWeatherWith_NameOfCity(city_name)
+    if data is not None:
+        return render_template('city_weather.html', data=data)
     else:
-        return jsonify({"error": "City not found"}), 404
+        data = {"mensaje" : "Ciudad no encontrada, intente de nuevo"}
+        return render_template('city_search.html', data=data)
+
 
 if __name__ == '__main__':
-    start()  # Asegúrate de llamar a la función start para cargar los datos
     app.run(debug=True)
