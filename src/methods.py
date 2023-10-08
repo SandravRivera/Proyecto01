@@ -76,15 +76,24 @@ def searchWeatherWith_ticket(ticket):
         ticket (string): ticket we want to search
 
     Returns:
-        string: weather of the cities included in the ticket
+        dict: A dictionary with the weather of the cities included in the ticket.
+        None if the ticket doesnt exist.
     """
     if(ticket in tickets):
         IATAS = tickets[ticket]
         weather1 = cache[IATAS[0]]
         weather2 = cache[IATAS[1]]
-        IATA1 = tickets[ticket][0]
-        IATA2 = tickets[ticket][1]
-        return(jsonify(weather1), jsonify(weather2))
+        weather = {
+            "name1": weather1["name"],
+            "weather1": weather1["weather"],
+            "temp1": weather1['temp'],
+            "humidity1": weather1['humidity'],
+            "name2": weather2["name"],
+            "weather2": weather2["weather"],
+            "temp2": weather2['temp'],
+            "humidity2": weather2['humidity']
+        }
+        return weather
     else:
         return None
        
@@ -96,24 +105,27 @@ def searchWeatherWith_NameOfCity(city):
         city (string): name of the city
 
     Returns:
-        Dictionary: the weather
+        dict: A dictionary with the weather
+        None if the the city is not valid.
     """
     if city in cities:
         return cities[city]
     
+    return city_search(city, cities, cache)
+    
 
-    weather = city_search(city, cities, cache)
-    if weather is None:
-        return None
+    # weather = city_search(city, cities, cache)
+    # if weather is None:
+    #     return None
         
-    cities[city] = {
-        "name": weather["name"],
-        "weather": weather["weather"],
-        "temp": weather["temp"],
-        "humidity": weather["humidity"]
-    }
+    # cities[city] = {
+    #     "name": weather["name"],
+    #     "weather": weather["weather"],
+    #     "temp": weather["temp"],
+    #     "humidity": weather["humidity"]
+    # }
 
-    return cities[city]    
+    # return cities[city]    
 
 def get_weather(url1):
     """It makes the API call to get a JSON, extracts and collects the information we want for the weather in 
