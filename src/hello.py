@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, jsonify
-from methods import start, searchWeatherWith_NameOfCity
+from flask import Flask, render_template, request
+from methods import start, searchWeatherWith_NameOfCity, searchWeatherWith_ticket
 
 app = Flask(__name__)
 
@@ -9,28 +9,34 @@ def index():
 
 @app.route('/')
 def home():
-    start()  # Asegúrate de llamar a la función start para cargar los datos
     return render_template('home.html')
 
 @app.route('/city.html/')
 def city():
-    data = {"mensaje" : ""}
-    return render_template('city_search.html', data=data)
+    return render_template('city_search.html', data = {"mensaje" : ""})
 
 @app.route('/ticket.html/')
 def ticket():
-    return render_template('ticket.html')
+    return render_template('ticket_search.html', data = {"mensaje" : ""})
 
-@app.route('/buscar_ciudad', methods=['POST'])
-def buscar_ciudad():
+@app.route('/city_weather', methods=['POST'])
+def city_weather():
     city_name = request.form['city-name-input']
     data = searchWeatherWith_NameOfCity(city_name)
     if data is not None:
         return render_template('city_weather.html', data=data)
     else:
-        data = {"mensaje" : "Ciudad no encontrada, intente de nuevo"}
-        return render_template('city_search.html', data=data)
+        return render_template('city_search.html', data={"mensaje" : "Ciudad no encontrada, intente de nuevo"})
 
+@app.route('/ticket_weather', methods=['POST'])
+def ticket_weather():
+    ticket = request.form['ticket-input']
+    data = searchWeatherWith_ticket(ticket)
+    if data is not None:
+        return render_template('ticket_weather.html', data=data)
+    else:
+        return render_template('ticket_search.html', data={"mensaje" : "Ticket no encontrado, intente de nuevo"})
 
 if __name__ == '__main__':
+    start()
     app.run(debug=True)
