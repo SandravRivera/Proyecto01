@@ -10,6 +10,12 @@ from levenshtein import *
 class TestLevenshtein(unittest.TestCase):
 
     def test_levenshtein_distance(self):
+        """
+        Test for levenshtein_distance function in levensthein.py
+
+        Function must return the levenshtein distance between two strings.
+        """
+
         string1 = ""
         string2 = ""
 
@@ -39,6 +45,13 @@ class TestLevenshtein(unittest.TestCase):
     
 
     def test_normalize_word(self):
+        """
+        Test for normalize_word function in levenshtein.py
+
+        Function must return the normalized version of a given string
+        (uppercase, alphabetical characters only).
+        """
+
         string1 = "!.?*"
         self.assertEqual("", normalize_word(string1))
 
@@ -59,6 +72,14 @@ class TestLevenshtein(unittest.TestCase):
         self.assertEqual(expected, normalize_word(string1))
 
     def test_calculate_distance(self):
+        """
+        Test for calculate_distance function in levenshtein.py
+
+        Function must return a dictionary of all words in given
+        dictionaries whose levenshtein distance with a given word goes
+        from 0 to given maximum values.
+        """
+
         IATA_ws = {
             'ACA':'weather1',
             'AGU':'weather2',
@@ -108,6 +129,12 @@ class TestLevenshtein(unittest.TestCase):
         
 
     def test_closest_word(self):
+        """
+        Test for closest_word function in levenshtein.py
+
+        Function must return the first weather string from the words
+        with the minimum levenshtein distance possible from a given word.
+        """
         IATA_ws = {
             'ACA':'weather1',
             'AGU':'weather2',
@@ -145,6 +172,13 @@ class TestLevenshtein(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_city_search(self):
+        """
+        Test for city_search function in levenshtein.py
+
+        Function must return the weather for a given city or its closest
+        match in cache (within certain distances).
+        """
+
         IATA_ws = {
             'ACA':'weather1',
             'AGU':'weather2',
