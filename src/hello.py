@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from methods import start, searchWeatherWith_NameOfCity, searchWeatherWith_ticket
+from methods import start, search_name_city, search_ticket
 
 app = Flask(__name__)
 
@@ -38,7 +38,7 @@ def city_weather():
         string: render a template with error message for city not found.
     """
     city_name = request.form['city-name-input']
-    data = searchWeatherWith_NameOfCity(city_name)
+    data = search_name_city(city_name)
     if data is not None:
         return render_template('city_weather.html', data=data)
     else:
@@ -53,7 +53,7 @@ def ticket_weather():
         string: render a template with error message for ticket not found.
     """
     ticket = request.form['ticket-input']
-    data = searchWeatherWith_ticket(ticket)
+    data = search_ticket(ticket)
     if data is not None:
         return render_template('ticket_weather.html', data=data)
     else:
