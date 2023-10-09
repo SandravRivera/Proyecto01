@@ -81,7 +81,7 @@ html, body {
   }
   
   .card {
-    flex-basis: calc(100% - 20px); /* Aumentamos el ancho para dejar espacio entre las cards */
+    flex-basis: calc(100% - 20px); 
     margin-bottom: 20px;
     height: 440px; 
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
