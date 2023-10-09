@@ -1,12 +1,12 @@
 import sys
 import time
 import requests
+from flask import jsonify
 from iataCities import iata_cities
 from levenshtein import city_search
 
 key = "&appid=155505a47faf9082a7ee3d45f7b1ea0b&units=metric" #key of the API
 url = "https://api.openweathermap.org/data/2.5/weather?"
-coordinates = {} #Dictionary "lat, lon": weather
 cache = {} #Dictionary "IATA" : weather
 tickets = {} #Dictionary "ticket": [IATA1, IATA2]
 cities = {} #Dictionary "name_of_the_city" : weather
@@ -40,7 +40,7 @@ def readData(data_list):
         data_list (list): A list with the data of the dataset.
 
     Returns:
-        dict,dict: Cache, with the weather of each IATA code. And tickets, with the IATA code of origin and destination.
+        None.
     """
     for raw_line in data_list:
         line = validLine(raw_line) #check if the line is valid
@@ -50,10 +50,10 @@ def readData(data_list):
             try:
                 url1 = (f"{url}lat={line[3]}&lon={line[4]}{key}") #create the url
                 weather = get_weather(url1)
+                weather["name"] = iata_cities[line[1]]
                 cache[line[1]] = weather
-                coordinates[f"{line[3]}, {line[4]}"] = weather 
                 cities[iata_cities[line[1]]] = weather
-                time.sleep(1.3)
+                time.sleep(1.05)
             except:
                 print(f"\nCould't request the weather information. The input {line} is probably incorrect.")
                 sys.exit()
@@ -62,10 +62,10 @@ def readData(data_list):
             try:
                 url2 = (f"{url}lat={line[5]}&lon={line[6]}{key}")
                 weather = get_weather(url2)
+                weather["name"] = iata_cities[line[2]]
                 cache[line[2]] = weather
-                coordinates[f"{line[5]}, {line[6]}"] = weather
                 cities[iata_cities[line[2]]] = weather
-                time.sleep(1.3)
+                time.sleep(1.05)
             except:
                 print(f"\nCould't request the weather information. The input {line} is probably incorrect.")
                 sys.exit()
@@ -78,17 +78,26 @@ def searchWeatherWith_ticket(ticket):
         ticket (string): ticket we want to search
 
     Returns:
-        string: weather of the cities included in the ticket
+        dict: A dictionary with the weather of the cities included in the ticket.
+        None if the ticket doesnt exist.
     """
     if(ticket in tickets):
         IATAS = tickets[ticket]
         weather1 = cache[IATAS[0]]
         weather2 = cache[IATAS[1]]
-        IATA1 = tickets[ticket][0]
-        IATA2 = tickets[ticket][1]
-        return (f"{IATA1}:\n{weather1}\n\n{IATA2}:\n{weather2}")
+        weather = {
+            "name1": weather1["name"],
+            "weather1": weather1["weather"],
+            "temp1": weather1['temp'],
+            "humidity1": weather1['humidity'],
+            "name2": weather2["name"],
+            "weather2": weather2["weather"],
+            "temp2": weather2['temp'],
+            "humidity2": weather2['humidity']
+        }
+        return weather
     else:
-        return ("Ticket not found.\nPlease check again the information.")
+        return None
        
             
 def searchWeatherWith_NameOfCity(city):
@@ -98,10 +107,14 @@ def searchWeatherWith_NameOfCity(city):
         city (string): name of the city
 
     Returns:
-        Dictionary: the weather
+        dict: A dictionary with the weather
+        None if the the city is not valid.
     """
-        
+    if city in cities:
+        return cities[city]
+    
     return city_search(city, cities, cache)
+
     
 def get_weather(url1):
     """It makes the API call to get a JSON, extracts and collects the information we want for the weather in 
@@ -116,16 +129,17 @@ def get_weather(url1):
     res1 = requests.get(url1) 
     data1 = res1.json()
     weather = {
-        "country": data1['sys']['country'],
-        "name": data1['name'],
         "weather": data1['weather'][0]['main'],
         "temp": data1['main']['temp'],
         "humidity": data1['main']['humidity']
     }
     return weather
 
+
 def start():
-    data_csv = open('dataset2.csv')
+    """Open the dataset, get a list of the lines from the file, and read the data.
+    """
+    data_csv = open('src/dataset2.csv')
     data_list = data_csv.readlines()
     data_list.pop(0)
     readData(data_list)
