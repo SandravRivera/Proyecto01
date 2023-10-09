@@ -130,7 +130,7 @@ def get_weather(url1):
     data1 = res1.json()
     weather = {
         "weather": data1['weather'][0]['main'],
-        "temp": data1['main']['temp'],
+        "temp": round(data1['main']['temp']),
         "humidity": data1['main']['humidity']
     }
     return weather

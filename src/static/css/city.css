@@ -1,4 +1,4 @@
-/* Estilos globales */
+/* Global styles */
 html, body {
   min-width: 400px;
   min-height: 100%;
@@ -81,12 +81,12 @@ html, body {
 }
 
 .card {
-  flex-basis: calc(70% - 20px);
+  flex-basis: calc(170% - 10px);
   margin-bottom: 20px;
-  height: 420px;
+  height: 425px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
   background-size: cover !important;
-  color: white;
+  color: black;
   position: relative;
   border-radius: 5px;
   margin: 0 10px;
@@ -95,9 +95,10 @@ html, body {
   justify-content: center;
 }
 
-/* Estilos específicos para la tarjeta 2 (CARD 2) */
+/*  Specific Styles for Card 2 (CARD 2) */
 .weather-card {
-  height: 420px;
+  height: 450px;
+  width: 380px;
   overflow: hidden;
 }
 
@@ -110,7 +111,7 @@ html, body {
   height: 100%;
 }
 
-/* Estilos para el contenido de la tarjeta 2 (Weather) */
+/* Styles for Card 2 (Weather) Content */
 .weather-card .weather img.weather-icon {
   max-width: 120px;
   margin-top: 10px;
@@ -135,12 +136,17 @@ html, body {
   margin-top: 20px;
 }
 
+.weather-card .details .col {
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
 .weather-card .details .col img {
   max-width: 40px;
   margin-right: 10px;
 }
 
-.weather-card .details .humidity .weather { /* Cambiado de wind a weather */
+.weather-card .details .humidity .weather {
   font-size: 22px;
   margin-top: -3px;
 }
