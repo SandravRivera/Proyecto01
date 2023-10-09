@@ -22,14 +22,14 @@ def validLine(raw_line):
     """
     line = raw_line.split(",")
     if len(line[0])!=16:
-        print(f"\nTicket {line[0]} is not valid, must have exactly 16 characters.")
+        return None
     try:
         line[3] = float(line[3])
         line[4] = float(line[4])
         line[5] = float(line[5])
         line[6] = float(line[6])
     except:
-        print(f"\nFormat of latitude or longitude is not valid on line {line}, must have exactly 16 characters.")
+        return None
     return line
 
 
@@ -44,6 +44,8 @@ def readData(data_list):
     """
     for raw_line in data_list:
         line = validLine(raw_line) #check if the line is valid
+        if(line==None):
+            continue
         tickets[line[0]] = [line[1], line[2]]
         
         if not line[1] in cache:
