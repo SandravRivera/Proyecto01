@@ -11,7 +11,7 @@ cache = {} #Dictionary "IATA" : weather
 tickets = {} #Dictionary "ticket": [IATA1, IATA2]
 cities = {} #Dictionary "name_of_the_city" : weather
 
-def validLine(raw_line):
+def valid_line(raw_line):
     """Method to check if a line in the dataset is valid. 
 
     Args:
@@ -33,7 +33,7 @@ def validLine(raw_line):
     return line
 
 
-def readData(data_list):
+def read_data(data_list):
     """Method to read the data from the data_list and to create the cache
 
     Args:
@@ -43,7 +43,7 @@ def readData(data_list):
         None.
     """
     for raw_line in data_list:
-        line = validLine(raw_line) #check if the line is valid
+        line = valid_line(raw_line) #check if the line is valid
         if(line==None):
             continue
         tickets[line[0]] = [line[1], line[2]]
@@ -73,7 +73,7 @@ def readData(data_list):
                 sys.exit()
 
 
-def searchWeatherWith_ticket(ticket):
+def search_ticket(ticket):
     """method to search the weather of the cities included in an airplane ticket
 
     Args:
@@ -102,7 +102,7 @@ def searchWeatherWith_ticket(ticket):
         return None
        
             
-def searchWeatherWith_NameOfCity(city):
+def search_name_city(city):
     """method to search the weather of a city with the name of the city
 
     Args:
@@ -144,5 +144,5 @@ def start():
     data_csv = open('src/dataset2.csv')
     data_list = data_csv.readlines()
     data_list.pop(0)
-    readData(data_list)
+    read_data(data_list)
     

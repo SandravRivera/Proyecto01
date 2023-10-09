@@ -25,22 +25,22 @@ class TestCache(unittest.TestCase):
         ticket = ""
         ticket_list = None
         
-        ticket_list = validLine(ticket)
+        ticket_list = valid_line(ticket)
         self.assertEqual(ticket_list, None)
         
         ticket = "a"        
-        ticket_list = validLine(ticket)
+        ticket_list = valid_line(ticket)
         self.assertEqual(ticket_list, None)
         
         ticket = "aaaaaaaaaaaaaaaa,bbb,ccc,d,e,f,g"
-        validLine(ticket)
+        valid_line(ticket)
         self.assertEqual(ticket_list, None)
         
         
         ticket = "C3NZsz5xBt82F4NJ,GDL,MEX,20.5218,-103.311,19.4363,-99.0721"
         expected_list = ["C3NZsz5xBt82F4NJ","GDL","MEX",20.5218,-103.311,19.4363,
                 -99.0721]
-        self.assertEqual(expected_list, validLine(ticket))
+        self.assertEqual(expected_list, valid_line(ticket))
 
         
     def test_readData(self):
@@ -64,7 +64,7 @@ class TestCache(unittest.TestCase):
         ticket3 = "aaaaaaaaaaaaaaaa,bbb,ccc,d,e,f,g"
         data_list_test = [ticket1, ticket2, ticket3]
         try:
-            readData(data_list_test)
+            read_data(data_list_test)
         except:
             pass
         self.assertEqual(methods.cache, {})
@@ -84,7 +84,7 @@ class TestCache(unittest.TestCase):
             "nB6WtNW8vKrWHzyC" : ["GDL", "MEX"]
             }
         try:
-            readData(data_list_test)
+            read_data(data_list_test)
         except:
             self.fail("Failed to read valid tickets.")
         self.assertEqual(methods.tickets, expected_tickets_dict)
@@ -97,7 +97,7 @@ class TestCache(unittest.TestCase):
 
         data_list_test = [ticket1, ticket3, ticket2]
         try:
-            readData(data_list_test)
+            read_data(data_list_test)
         except:
             self.fail("Failed to skip non valid line")
         self.assertEqual(methods.tickets, expected_tickets_dict)
@@ -132,11 +132,11 @@ class TestCache(unittest.TestCase):
         methods.tickets = {}
         methods.cities = {}
         
-        self.assertEqual(searchWeatherWith_ticket(number1), None)
+        self.assertEqual(search_ticket(number1), None)
         
         ticket_list_test = [ticket1]
-        readData(ticket_list_test)
-        weather_dict = searchWeatherWith_ticket(number1)
+        read_data(ticket_list_test)
+        weather_dict = search_ticket(number1)
         self.assertFalse(weather_dict == None)
         
         expected_keys = ["name1", "weather1", "temp1", "humidity1", "name2",
@@ -180,13 +180,13 @@ class TestCache(unittest.TestCase):
         methods.cities = {}
         
         city = "Guadalajara"
-        self.assertEqual(searchWeatherWith_NameOfCity(city), None)
+        self.assertEqual(search_name_city(city), None)
         
         ticket1 = "ejcwGA8AcLcWQ72g,GDL,MEX,20.5218,-103.311,19.4363,-99.0721"
         ticket_list_test = [ticket1]
-        readData(ticket_list_test)
+        read_data(ticket_list_test)
 
-        weather_dict = searchWeatherWith_NameOfCity(city)
+        weather_dict = search_name_city(city)
         self.assertFalse(weather_dict == None)
         
         expected_keys = ["name", "weather", "temp", "humidity"]
