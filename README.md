@@ -13,13 +13,22 @@ El programa funciona con Python 3 y tiene los siguientes requerimientos:
 * Flask 2.3.3
 
 ### Bibliotecas y paquetes
-* Unidecode (de preferencia 1.3.6)
-* Blinker 1.6.2
-* Click 8.1.7
-* itsdangerous 2.1.2
-* Jinja2 3.1.2
-* MarkupSafe 2.1.3
-* Werkzeug 2.3.7
+* blinker  1.6.2
+* certifi  2023.7.22
+* charset-normalizer  3.3.0
+* click  8.1.7
+* colorama  0.4.6
+* Flask  2.3.3
+* idna  3.4
+* itsdangerous  2.1.2
+* Jinja2  3.1.2
+* MarkupSafe  2.1.3
+* numpy  1.26.0
+* requests  2.31.0
+* Unidecode  1.3.7
+* urllib3  2.0.6
+* Werkzeug  2.3.7
+
 
 ## Instrucciones de Ejecución
 Es recomendable crear primero un entorno virtual dentro de la carpeta Proyecto01. Para hacerlo y activarlo, se deben de seguir las siguientes instrucciones: https://python.land/virtual-environments/virtualenv
