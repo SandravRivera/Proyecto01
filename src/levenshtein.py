@@ -21,7 +21,7 @@ def levenshtein_distance(word1: str, word2: str):
     word1 = normalize_word(word1)
     word2 = normalize_word(word2)
     distances = numpy.zeros((len(word1) + 1, len(word2) + 1))
-
+    # Number the first row and column.
     for t1 in range(len(word1) + 1):
         distances[t1][0] = t1
     for t2 in range(len(word2) + 1):
@@ -33,8 +33,10 @@ def levenshtein_distance(word1: str, word2: str):
     
     for t1 in range(1, len(word1) + 1):
         for t2 in range(1, len(word2) + 1):
+            # Distance between equal character is equal to top-left corner
             if (word1[t1-1] == word2[t2-1]):
                 distances[t1][t2] = distances[t1 - 1][t2 - 1]
+            # Distance between different character is the smallest+1
             else:
                 a = distances[t1][t2 - 1]
                 b = distances[t1 - 1][t2]
