@@ -4,8 +4,8 @@ Proyecto01, Modelado y Programación.
 ## Integrantes
   * Morales Flores Luis Enrique (modelo, diccionarios, caché)
   * Sánchez Estrada Alejandro (vista, json)
-  * Acevedo Romero Miroslava (pruebas unitarias, presentación, documentación)
-  * Rivera Lara Sandra Valeria (controlador, Levenstein)
+  * Acevedo Romero Miroslava (pruebas unitarias, presentación)
+  * Rivera Lara Sandra Valeria (controlador, Levenshtein)
 ## Requerimientos
 El programa funciona con Python 3 y tiene los siguientes requerimientos:
 
@@ -37,6 +37,13 @@ De no haberse instalado algún paquete, escribir el comando:
 
 pip install <nombre paquete>
 
+### Pruebas unitarias
+
+Abrir una terminal en la carpeta Proyecto01/src y ejecutar el comando:
+
+python -m unittest
+
+para correr todas las pruebas unitarias del modelo.
 
 ### Ejecución
 
