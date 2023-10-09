@@ -8,20 +8,10 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__))+"/..")
 
 import methods
 
-from methods import key
-from methods import url
-from methods import cache
-from methods import tickets
-from methods import cities
+from methods import *
 
 from iataCities import iata_cities
 from levenshtein import city_search
-
-from methods import validLine
-from methods import readData
-from methods import searchWeatherWith_ticket
-from methods import searchWeatherWith_NameOfCity
-from methods import get_weather
 
 
 class TestCache(unittest.TestCase):

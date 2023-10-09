@@ -5,11 +5,7 @@ import os
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__))+"/..")
 
-from levenshtein import normalize_word
-from levenshtein import levenshtein_distance
-from levenshtein import calculate_distance
-from levenshtein import closest_word
-from levenshtein import city_search
+from levenshtein import * 
 
 class TestLevenshtein(unittest.TestCase):
 
