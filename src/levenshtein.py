@@ -57,7 +57,7 @@ def normalize_word(original_word: str):
         original_word (str): the word before normalize it.
 
     Returns:
-        string: the word after normalize it.
+        str: the word after normalize it.
     """
 
     normalized_word = unidecode.unidecode(original_word)
@@ -78,8 +78,8 @@ def calculate_distance(my_location: str, max_dist_iata: int, max_dist_city: int,
     
     Args:
         my_location (str): the word chosen to compare.
-        max_dist_iata (int): the maximum distance permited with IATA codes.
-        max_dist_city (int): the maximum distance permited with cities names.
+        max_dist_iata (int): maximum distance permited with IATA.
+        max_dist_city (int): maximum distance permited with cities.
         cities_weather (dict): cities and their weathers.
         iatas_weather (dict): IATA codes and their weathers.
 
