@@ -10,13 +10,17 @@ import methods
 
 from methods import *
 
-from iataCities import iata_cities
 from levenshtein import city_search
 
 
 class TestCache(unittest.TestCase):
     
     def test_validLine(self):
+        """
+        Test for validLine function in methods.py
+
+        Function must split and return valid lines only (tickets).
+        """
         
         ticket = ""
         ticket_list = None
@@ -34,12 +38,18 @@ class TestCache(unittest.TestCase):
         
         
         ticket = "C3NZsz5xBt82F4NJ,GDL,MEX,20.5218,-103.311,19.4363,-99.0721"
-        list = ["C3NZsz5xBt82F4NJ","GDL","MEX",20.5218,-103.311,19.4363,
+        expected_list = ["C3NZsz5xBt82F4NJ","GDL","MEX",20.5218,-103.311,19.4363,
                 -99.0721]
-        self.assertEqual(list, validLine(ticket))
+        self.assertEqual(expected_list, validLine(ticket))
 
         
     def test_readData(self):
+        """
+        Test for readData function in methods.py
+
+        Function must read a list of tickets, make requests for each
+        city's weather and save information as dictionaries.
+        """
 
         methods_cache = methods.cache
         methods_tickets = methods.tickets
@@ -104,6 +114,12 @@ class TestCache(unittest.TestCase):
 
 
     def test_searchWeatherWith_ticket(self):
+        """
+        Test for searchWeatherWith_ticket function in methods.py
+
+        Function must return weather dictionaries of cities for tickets 
+        existing in cache.
+        """
         
         ticket1 = "ejcwGA8AcLcWQ72g,GDL,MEX,20.5218,-103.311,19.4363,-99.0721"
         number1 = "ejcwGA8AcLcWQ72g"
@@ -148,6 +164,12 @@ class TestCache(unittest.TestCase):
         
 
     def test_searchWeatherWith_NameOfCity(self):
+        """
+        Test for searchWeatherWith_NameOfCity function in methods.py
+
+        Function must return weather dictionaries of cities existing 
+        in cache.
+        """
 
         methods_cache = methods.cache
         methods_tickets = methods.tickets
@@ -183,6 +205,13 @@ class TestCache(unittest.TestCase):
 
 
     def test_get_weather(self):
+        """
+        Test for get_weather function in methods.py
+
+        Function must request weather data from the API for a city and
+        return this data as a dictionary.
+        """
+        
         test_url = (f"{methods.url}lat=20.5218&lon=-103.311{methods.key}")
         
         weather_dict = get_weather(test_url)
