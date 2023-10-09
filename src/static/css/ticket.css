@@ -1,4 +1,4 @@
-/* Estilos globales */
+/* Global Styles */
 html, body {
     min-width: 400px;
     min-height: 100%;
@@ -95,7 +95,7 @@ html, body {
     justify-content: center;
   }
   
-  /* Estilos específicos para la tarjeta 2 (CARD 2) */
+  /* Specific Styles for Card 2 (CARD 2) */
   .card-weather {
     height: 440px;
     width: 380px; 
@@ -111,7 +111,7 @@ html, body {
     height: 100%; 
   }
   
-  /* Estilos para el contenido de la tarjeta 2 (Weather) */
+  /* Styles for Card 2 (Weather) Content */
   .card-weather .weather img.weather-icon {
     max-width: 120px; 
     margin-top: 10px;
