@@ -42,7 +42,7 @@ def city_weather():
     if data is not None:
         return render_template('city_weather.html', data=data)
     else:
-        return render_template('city_search.html', data={"mensaje" : "Ciudad no encontrada, intente de nuevo."})
+        return render_template('city_search.html', data={"mensaje" : "City not found, try again."})
 
 @app.route('/ticket_weather', methods=['POST'])
 def ticket_weather():
@@ -57,7 +57,7 @@ def ticket_weather():
     if data is not None:
         return render_template('ticket_weather.html', data=data)
     else:
-        return render_template('ticket_search.html', data={"mensaje" : "Ticket no encontrado, intente de nuevo."})
+        return render_template('ticket_search.html', data={"mensaje" : "Ticket not found, try again."})
 
 if __name__ == '__main__':
     start()

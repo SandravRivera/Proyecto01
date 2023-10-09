@@ -22,7 +22,7 @@ El programa funciona con Python 3 y tiene los siguientes requerimientos:
 * Werkzeug 2.3.7
 
 ## Instrucciones de Ejecución
-Es recomendable crear primero un entorno virtual dentro de la carpeta Proyecto01. Para hacerlo y activarlo, se deben de seguir las siguientes instrucciones: https://docs.python.org/3/library/venv.html
+Es recomendable crear primero un entorno virtual dentro de la carpeta Proyecto01. Para hacerlo y activarlo, se deben de seguir las siguientes instrucciones: https://python.land/virtual-environments/virtualenv
 
 ### Instalación de paquetes
 Dentro de la carpeta Proyecto01 escribir:
@@ -49,7 +49,7 @@ para correr todas las pruebas unitarias del modelo.
 
 Escribir en la carpeta Proyecto01 el siguiente comando:
 
-python src\hello.py
+python src\app.py
 
 Puede tardar unos minutos en cargar, pero luego se debe dar click en el link que se muestra en la consola. Ahora la app se debe de abrir en el navegador y después de que cargue ya está lista para usarse.
 
