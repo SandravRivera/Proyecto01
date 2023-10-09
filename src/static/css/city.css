@@ -136,12 +136,17 @@ html, body {
   margin-top: 20px;
 }
 
+.weather-card .details .col {
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
 .weather-card .details .col img {
   max-width: 40px;
   margin-right: 10px;
 }
 
-.weather-card .details .humidity .weather { /* Cambiado de wind a weather */
+.weather-card .details .humidity .weather {
   font-size: 22px;
   margin-top: -3px;
 }

@@ -135,7 +135,12 @@ html, body {
     padding: 0 20px;
     margin-top: 20px;
   }
-  
+
+  .weather-card .details .col {
+    margin-right: 30px;
+    margin-left: 30px;
+  }  
+
   .card-weather .details .col img {
     max-width: 40px;
     margin-right: 10px;
